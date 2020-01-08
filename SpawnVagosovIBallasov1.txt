@@ -1,0 +1,44 @@
+// This file was decompiled using SASCM.ini published by GTAG (http://gtag.gtagaming.com/opcode-database) on 6.14.2013
+{$CLEO .cs}
+
+//-------------MAIN---------------
+0000: NOP 
+
+:NONAME_2
+wait 0 
+if 
+056D:   actor $PLAYER_ACTOR defined 
+else_jump @NONAME_2 
+04C4: store_coords_to 1@ 2@ 3@ from_actor $PLAYER_ACTOR with_offset 0.0 0.0 0.0 
+jump @NONAME_95 
+
+:NONAME_95
+if 
+0AB0:   key_pressed 121 
+else_jump @NONAME_2 
+jump @NONAME_246 
+
+:NONAME_246
+Model.Load(#LSV1)
+Model.Load(#LSV2)
+Model.Load(#LSV3)
+038B: load_requested_models 
+jump @NONAME_267 
+
+:NONAME_267
+if and
+   Model.Available(#LSV1)
+   Model.Available(#LSV2)
+   Model.Available(#LSV3)   
+else_jump @NONAME_267 
+jump @NONAME_297 
+
+:NONAME_297
+4@ = Actor.Create(Gang3, #LSV1, 1@, 2@, 3@)
+5@ = Actor.Create(Gang3, #LSV2, 1@, 2@, 3@)
+6@ = Actor.Create(Gang3, #LSV3, 1@, 2@, 3@)
+Model.Destroy(#LSV1)
+Model.Destroy(#LSV2)
+Model.Destroy(#LSV3)
+wait 1000 
+jump @NONAME_2 

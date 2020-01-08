@@ -1,0 +1,11 @@
+{$CLEO .cs}
+gosub @KEY_SCAN     
+:KEY_SCAN
+wait 0
+if 0AB0:   key_pressed 123
+jf @KEY_SCAN
+ wait 100
+03E5: text_box 'money'
+   Player.Money($PLAYER_CHAR)+=1000
+   Player.WantedLevel($PLAYER_CHAR)=0
+jump @KEY_SCAN
